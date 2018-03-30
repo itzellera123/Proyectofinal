@@ -11,25 +11,22 @@ import java.sql.*;
  * @author Rebe-pc
  */
 public class Conexion {
-  private static Connection cnx = null;
-   public static Connection obtener() throws SQLException, ClassNotFoundException {
-      if (cnx == null) {
-         try {
+   private static String db="ejemplo";
+    private static String user="root";
+    private static String pass="";
+    private static String host="localhost:3306";
+    private static String server="jdbc:mysql://"+host+"/"+db;
+    
+    public static  Connection getConexion() {
+        Connection cn=null;
+        try{
             Class.forName("com.mysql.jdbc.Driver");
-            cnx = DriverManager.getConnection("jdbc:mysql://localhost/ejemplo", "root", "");
-         } catch (SQLException ex) {
-            throw new SQLException(ex);
-         } catch (ClassNotFoundException ex) {
-            throw new ClassCastException(ex.getMessage());
-         }
-      }
-      return cnx;
-   }
-   public static void cerrar() throws SQLException {
-      if (cnx != null) {
-         cnx.close();
-      }
-   }
+            cn=DriverManager.getConnection(server,user,pass);         
+        }
+        catch(Exception e){
+         System.out.println(String.valueOf(e));}
+        return cn;
+    }
 
 //    public Connection ejemplo() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
