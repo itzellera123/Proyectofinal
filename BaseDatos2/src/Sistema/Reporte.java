@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -143,29 +144,18 @@ public class Reporte extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         
-        try
-        {
-            Connection conexion;
-            conexion=Conexion.getConexion();
-            PreparedStatement consulta = conexion.prepareStatement("SELECT id, nombre_estadio FROM estadios" );
-            ResultSet resultado = consulta.executeQuery();
-            while(resultado.next())
-            {
-                String dato=resultado.getString("nombre_estadio");
-                String id=resultado.getString("id");
-                System.out.println(id+"-"+dato);
-
-            }
-            conexion.close();
-        }
-        catch(SQLException ex)
-        {
-            try {
-                throw new SQLException(ex);
-            } catch (SQLException ex1) {
-                Logger.getLogger(Reporte.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+        DefaultTableModel modelo = new DefaultTableModel();               
+        ResultSet rs = Database.getTabla("SELECT id, nombre_estadio FROM estadios");
+        modelo.setColumnIdentifiers(new Object[]{"Id", "nombre_estadio"});
+        try {
+            while (rs.next()) {
+                // añade los resultado a al modelo de tabla
+                modelo.addRow(new Object[]{rs.getString("id"), rs.getString("nombre_estadio")});
+            }            
+            // asigna el modelo a la tabla
+            jTable1.setModel(modelo);            
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
