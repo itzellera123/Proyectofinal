@@ -145,12 +145,12 @@ public class Reporte extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         DefaultTableModel modelo = new DefaultTableModel();               
-        ResultSet rs = Database.getTabla("SELECT id, nombre_estadio FROM estadios");
-        modelo.setColumnIdentifiers(new Object[]{"Id", "nombre_estadio"});
+        ResultSet rs = Database.getTabla("SELECT equipo_local, marcador_local,marcador_visitante, equipo_visitante FROM partidos");
+        modelo.setColumnIdentifiers(new Object[]{"Local", "Marcador","Marcador", "Visistante"});
         try {
             while (rs.next()) {
                 // añade los resultado a al modelo de tabla
-                modelo.addRow(new Object[]{rs.getString("id"), rs.getString("nombre_estadio")});
+                modelo.addRow(new Object[]{rs.getString("equipo_local"), rs.getString("marcador_local"),rs.getString("marcador_visitante"),rs.getString("marcador_visitante")});
             }            
             // asigna el modelo a la tabla
             jTable1.setModel(modelo);            

@@ -11,7 +11,7 @@ import java.sql.*;
  * @author Rebe-pc
  */
 public class Conexion {
-   private static String db="ejemplo";
+   private static String db="ejemplo1";
     private static String user="root";
     private static String pass="";
     private static String host="localhost:3306";
