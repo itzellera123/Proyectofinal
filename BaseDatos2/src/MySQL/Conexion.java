@@ -11,10 +11,10 @@ import java.sql.*;
  * @author Rebe-pc
  */
 public class Conexion {
-   private static String db="ejemplo1";
-    private static String user="root";
-    private static String pass="";
-    private static String host="localhost:3306";
+   private static String db="ligamx";//nombre de la BD
+    private static String user="root";//Usuario
+    private static String pass="";//Contraseña
+    private static String host="localhost:3306";//Host
     private static String server="jdbc:mysql://"+host+"/"+db;
     
     public static  Connection getConexion() {

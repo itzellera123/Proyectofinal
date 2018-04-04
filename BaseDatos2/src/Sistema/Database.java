@@ -16,7 +16,7 @@ import java.sql.Statement;
  */
 class Database {
 
-     public static ResultSet getTabla(String Consulta){
+     public static ResultSet getTabla(String Consulta){//Consuklta en las tablas
         Connection cn=getConexion();
         Statement st;
         ResultSet datos=null;
