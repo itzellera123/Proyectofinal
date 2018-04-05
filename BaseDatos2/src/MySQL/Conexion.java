@@ -31,4 +31,8 @@ public class Conexion {
 //    public Connection ejemplo() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
+
+    public PreparedStatement prepareStatement(String insert_into_estadiosnombre_estadio_VALUES) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
