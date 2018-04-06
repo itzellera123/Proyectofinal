@@ -6,8 +6,6 @@
 package Sistema;
 
 import MySQL.Conexion;
-import static MySQL.Conexion.getConexion;
-import static Sistema.Database.getTabla;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,23 +20,23 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Itzel
  */
-public class Equipos extends javax.swing.JFrame {
-    Conexion con;
+public class Estadios extends javax.swing.JFrame {
 
     /**
-     * Creates new form Equipos
+     * Creates new form Estadios
      */
-    public Equipos() {
+    public Estadios() {
         initComponents();
-      mostrardatos("");
+         mostrardatos("");
     }
-   
-    void mostrardatos(String valor){
+      void mostrardatos(String valor){
+       
+        
          Connection conexion;
          conexion=Conexion.getConexion();
          DefaultTableModel modelo=new DefaultTableModel();
-         ResultSet rs = Database.getTabla("SELECT equipos FROM equipo");
-         modelo.setColumnIdentifiers(new Object[]{"Equipos"});
+         ResultSet rs = Database.getTabla("SELECT Nom_estadios FROM estadios");
+         modelo.setColumnIdentifiers(new Object[]{"Etadios"});
          //        
 
 
@@ -46,16 +44,16 @@ jTable1.setModel(modelo);
 String sql="";
 if (valor.equals(""))
 {
-    sql="SELECT * FROM equipo";
+    sql="SELECT * FROM estadios";
 }
 else{
-    sql="SELECT * FROM equipo WHERE (id_equipos='"+valor+"' OR equipos='"+valor+"'  )";
+    sql="SELECT * FROM estadios WHERE (Id_etadios='"+valor+"' OR Nom_estadios='"+valor+"'  )";
 }
 String []datos=new String [2];
 try {
     while (rs.next()) {
         // añade los resultado a al modelo de tabla
-        modelo.addRow(new Object[]{rs.getString("equipos")});
+        modelo.addRow(new Object[]{rs.getString("Nom_estadios")});
     }
     // asigna el modelo a la tabla
     jTable1.setModel(modelo);
@@ -63,12 +61,7 @@ try {
     System.out.println(e);
 }
 
-       
-        
-    }
-   
-        
-    
+      }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,7 +83,7 @@ try {
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -102,7 +95,7 @@ try {
         });
         jPopupMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Eliminar");
+        jMenuItem2.setText("eliminar");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -113,23 +106,17 @@ try {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("   EQUIPOS");
+        jLabel1.setText("Estadios");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(350, 10, 150, 30);
+        jLabel1.setBounds(280, 20, 150, 30);
 
-        jLabel2.setText("Nombre equipo");
+        jLabel2.setText("Ingresa el nombre Estadio");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(44, 74, 80, 14);
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        jLabel2.setBounds(50, 110, 125, 14);
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(134, 71, 108, 30);
+        jTextField1.setBounds(180, 110, 73, 20);
 
         jButton1.setText("Insertar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +125,7 @@ try {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(265, 70, 80, 30);
+        jButton1.setBounds(270, 110, 71, 23);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -155,7 +142,7 @@ try {
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(200, 190, 375, 92);
+        jScrollPane1.setBounds(150, 240, 375, 98);
 
         jButton2.setText("Mostrar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -164,24 +151,13 @@ try {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(320, 110, 80, 30);
+        jButton2.setBounds(260, 360, 69, 23);
 
         jButton3.setText("Buscar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
         getContentPane().add(jButton3);
-        jButton3.setBounds(380, 70, 80, 30);
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(470, 70, 86, 23);
+        jButton3.setBounds(410, 110, 65, 23);
+        getContentPane().add(jTextField3);
+        jTextField3.setBounds(480, 110, 64, 20);
 
         jButton4.setText("Modificar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -190,26 +166,22 @@ try {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(580, 70, 80, 30);
+        jButton4.setBounds(380, 360, 75, 23);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sistema/uefa.jpg"))); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 760, 330);
+        jLabel3.setBounds(0, 0, 810, 500);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        
-
-
-  try
+         try
         {
- Connection conexion;
-conexion=Conexion.getConexion();
-           PreparedStatement pst=conexion.prepareStatement("INSERT INTO equipo(equipos) VALUES(?)");
+      Connection conexion;
+       conexion=Conexion.getConexion();
+           PreparedStatement pst=conexion.prepareStatement("INSERT INTO estadios(Nom_estadios) VALUES(?)");
             //pst.setString(1,jTextField1.getText());
             pst.setString(1,jTextField1.getText());
 
@@ -235,110 +207,32 @@ conexion=Conexion.getConexion();
        
         }
 
-
-//  try
-//        {
-//           con=new Conexion();
-//Connection reg= con.getConexion() ;
-//           PreparedStatement pst=con.prepareStatement("INSERT INTO estadios(nombre_estadio) VALUES(?)");
-//            //pst.setString(1,jTextField1.getText());
-//            pst.setString(1,jTextField1.getText());
-//            
-//
-//        
-//        int a=pst.executeUpdate();
-//        if(a>0){
-//            JOptionPane.showMessageDialog(null,"Registro exitoso");
-//             mostrardatos("");
-//        }
-//        else{
-//             JOptionPane.showMessageDialog(null,"Error al agregar");
-//        }
-//    
-//        }
-//         
-//        catch(SQLException ex)
-//        {
-//            try {
-//                throw new SQLException(ex);
-//            } catch (SQLException ex1) {
-//                Logger.getLogger(Reporte.class.getName()).log(Level.SEVERE, null, ex1);
-//            }
-//        } 
-//  catch (ClassNotFoundException ex) {
-//            Logger.getLogger(Reporte.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
-//    }
-//    private void mostrardatos(String string) {
-//       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-//         String valor="";
-//        Connection conexion;
-//        conexion=Conexion.getConexion();
-//        DefaultTableModel modelo=new DefaultTableModel();
-//        modelo.addColumn("Id_equipos");
-//        modelo.addColumn("equipos");
-//        jTable1.setModel(modelo);
-//        String sql="";
-//        if (valor.equals(""))
-//        {
-//            sql="SELECT * FROM equipo";
-//        }
-//        else{
-//            sql="SELECT * FROM estadios WHERE (Id_equipos='"+valor+" OR equipos='"+valor+")";
-//        }
-//        String []datos=new String [2];
-//        try{
-//            Statement st=   conexion.createStatement();
-//            ResultSet rs=st.executeQuery(sql);
-//            while(rs.next()){
-//                datos[0]=rs.getString(1);
-//                datos[1]=rs.getString(2);
-//                
-//                modelo.addRow(datos);
-//            }
-//            jTable1.setModel(modelo);
-//        }catch(SQLException ex){
-//            Logger.getLogger(datos.class.getName()).log(Level.SEVERE,null,ex);
-//        }
-       
- DefaultTableModel modelo = new DefaultTableModel();               
-        ResultSet rs = Database.getTabla("SELECT equipos FROM equipo");
-        modelo.setColumnIdentifiers(new Object[]{"Equipos"});
+         DefaultTableModel modelo = new DefaultTableModel();               
+        ResultSet rs = Database.getTabla("SELECT Nom_estadios FROM estadios");
+        modelo.setColumnIdentifiers(new Object[]{"Etadios"});
         try {
             while (rs.next()) {
                 // añade los resultado a al modelo de tabla
-                modelo.addRow(new Object[]{rs.getString("equipos")});
+                modelo.addRow(new Object[]{rs.getString("Nom_estadios")});
             }            
             // asigna el modelo a la tabla
             jTable1.setModel(modelo);            
         } catch (Exception e) {
             System.out.println(e);
         }
-        
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        mostrardatos(jTextField2.getText());
-    }//GEN-LAST:event_jButton3ActionPerformed
-    String Id_Equipos="";
+String  Id_estadios="";
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        int fila=jTable1.getSelectedRow();
+                int fila=jTable1.getSelectedRow();
     if(fila>=0){
         jTextField1.setText(jTable1.getValueAt(fila,0).toString());
          //jTextField2.setText(jTable1.getValueAt(fila,1).toString());
-      Id_Equipos = jTable1.getValueAt(fila,0).toString();
+      Id_estadios = jTable1.getValueAt(fila,0).toString();
            
     }
     else{
@@ -348,14 +242,14 @@ conexion=Conexion.getConexion();
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-           Conexion cc=new Conexion();
+          Conexion cc=new Conexion();
           Connection cn=cc.getConexion();
           //Este nos sirve para poder modificar lo unico que cambia es id_equipos
 try{
-PreparedStatement pst=cn.prepareStatement("UPDATE equipo SET equipos='"+jTextField1.getText()+"' WHERE equipos='"+Id_Equipos+"' ");
+PreparedStatement pst=cn.prepareStatement("UPDATE estadios SET Nom_estadios='"+jTextField1.getText()+"' WHERE Nom_estadios='"+Id_estadios+"' ");
 
 //PreparedStatement pst=cn.prepareStatement("UPDATE equipo SET equipos='"+"' WHERE Id_Equipos='"+Id_Equipos+"' ");
-Id_Equipos=jTextField1.getText();
+Id_estadios=jTextField1.getText();
 pst.executeUpdate();
 mostrardatos("");
 }catch(Exception e){
@@ -365,22 +259,19 @@ mostrardatos("");
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-                 Conexion cc=new Conexion();
+                   Conexion cc=new Conexion();
              Connection cn=cc.getConexion();
               int fila=jTable1.getSelectedRow();
                  String cod="";
              cod=jTable1.getValueAt(fila,0).toString();
       try{
-        PreparedStatement pst=cn.prepareStatement("DELETE FROM equipo WHERE equipos='"+cod+"'");
+        PreparedStatement pst=cn.prepareStatement("DELETE FROM estadios WHERE Nom_estadios='"+cod+"'");
         pst.executeUpdate();
         mostrardatos("");// TODO add your handling code here:
          } catch (Exception e){
 }  
+        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,20 +290,20 @@ mostrardatos("");
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Equipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Estadios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Equipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Estadios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Equipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Estadios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Equipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Estadios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Equipos().setVisible(true);
+                new Estadios().setVisible(true);
             }
         });
     }
@@ -431,10 +322,8 @@ mostrardatos("");
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 
-
-
-   
+    
 }
