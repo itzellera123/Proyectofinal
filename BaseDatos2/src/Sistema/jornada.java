@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,14 +19,15 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Itzel
  */
-public class Estadios extends javax.swing.JFrame {
+public class jornada extends javax.swing.JFrame {
 
     /**
-     * Creates new form Estadios
+     * Creates new form jornada
      */
-    public Estadios() {
+    public jornada() {
         initComponents();
-         mostrardatos("");
+          mostrardatos("");
+        
     }
       void mostrardatos(String valor){
        
@@ -35,32 +35,31 @@ public class Estadios extends javax.swing.JFrame {
          Connection conexion;
          conexion=Conexion.getConexion();
          DefaultTableModel modelo=new DefaultTableModel();
-         ResultSet rs = Database.getTabla("SELECT Nom_estadios FROM estadios");
-         modelo.setColumnIdentifiers(new Object[]{"Etadios"});
+         ResultSet rs = Database.getTabla("SELECT Id_jornada,Id_torneo FROM jornada");
+         modelo.setColumnIdentifiers(new Object[]{"Id_jornada","Id_torneo"});
          //        
 
 
-jTable1.setModel(modelo);
+                jTable1.setModel(modelo);
 String sql="";
 if (valor.equals(""))
 {
-    sql="SELECT * FROM estadios";
+    sql="SELECT * FROM jornada";
 }
 else{
-    sql="SELECT * FROM estadios WHERE (Id_etadios='"+valor+"' OR Nom_estadios='"+valor+"'  )";
+    sql="SELECT * FROM jornada WHERE (Id_jornada='"+valor+"' OR Id_torneo='"+valor+"'  )";
 }
 String []datos=new String [2];
 try {
     while (rs.next()) {
         // añade los resultado a al modelo de tabla
-        modelo.addRow(new Object[]{rs.getString("Nom_estadios")});
+        modelo.addRow(new Object[]{rs.getString("Id_jornada"),rs.getString("Id_torneo")});
     }
     // asigna el modelo a la tabla
     jTable1.setModel(modelo);
 } catch (Exception e) {
     System.out.println(e);
 }
-
       }
 
     /**
@@ -77,15 +76,14 @@ try {
         jMenuItem2 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
 
         jMenuItem1.setText("Modificar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -104,19 +102,12 @@ try {
         jPopupMenu1.add(jMenuItem2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Estadios");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(280, 20, 150, 30);
+        jLabel1.setText("Jornada");
 
-        jLabel2.setText("Ingresa el nombre Estadio");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(50, 110, 125, 14);
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(180, 100, 90, 30);
+        jLabel2.setText("Id_jornada");
+
+        jLabel3.setText("Id_torneo");
 
         jButton1.setText("Insertar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -124,8 +115,6 @@ try {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(270, 100, 71, 30);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,36 +130,76 @@ try {
         jTable1.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(150, 240, 375, 98);
-
         jButton2.setText("Mostrar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(260, 360, 69, 30);
 
-        jButton3.setText("Buscar");
-        getContentPane().add(jButton3);
-        jButton3.setBounds(410, 100, 65, 30);
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(480, 100, 70, 30);
-
-        jButton4.setText("Modificar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.setText("Modificar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(380, 360, 75, 30);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sistema/uefa.jpg"))); // NOI18N
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 810, 500);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                                    .addComponent(jTextField1))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1)
+                                .addGap(28, 28, 28)
+                                .addComponent(jButton2)))))
+                .addContainerGap(47, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(192, 192, 192))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addGap(22, 22, 22))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -179,11 +208,11 @@ try {
         // TODO add your handling code here:
          try
         {
-      Connection conexion;
-       conexion=Conexion.getConexion();
-           PreparedStatement pst=conexion.prepareStatement("INSERT INTO estadios(Nom_estadios) VALUES(?)");
-            //pst.setString(1,jTextField1.getText());
+ Connection conexion;
+conexion=Conexion.getConexion();
+           PreparedStatement pst=conexion.prepareStatement("INSERT INTO jornada(Id_jornada,Id_torneo) VALUES(?,?)");
             pst.setString(1,jTextField1.getText());
+            pst.setString(2,jTextField2.getText());
 
 
 
@@ -206,18 +235,17 @@ try {
             
        
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-         DefaultTableModel modelo = new DefaultTableModel();               
-        ResultSet rs = Database.getTabla("SELECT Nom_estadios FROM estadios");
-        modelo.setColumnIdentifiers(new Object[]{"Etadios"});
+                 DefaultTableModel modelo = new DefaultTableModel();               
+        ResultSet rs = Database.getTabla("SELECT Id_jornada,Id_torneo FROM jornada");
+        modelo.setColumnIdentifiers(new Object[]{"Id_jornada","Id_torneo"});
         try {
             while (rs.next()) {
                 // añade los resultado a al modelo de tabla
-                modelo.addRow(new Object[]{rs.getString("Nom_estadios")});
+                modelo.addRow(new Object[]{rs.getString("Id_jornada"),rs.getString("Id_torneo")});
             }            
             // asigna el modelo a la tabla
             jTable1.setModel(modelo);            
@@ -225,14 +253,15 @@ try {
             System.out.println(e);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
-String  Id_estadios="";
+String Id_jornada="";
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-                int fila=jTable1.getSelectedRow();
+         
+                     int fila=jTable1.getSelectedRow();
     if(fila>=0){
         jTextField1.setText(jTable1.getValueAt(fila,0).toString());
-         //jTextField2.setText(jTable1.getValueAt(fila,1).toString());
-      Id_estadios = jTable1.getValueAt(fila,0).toString();
+        jTextField2.setText(jTable1.getValueAt(fila,1).toString());
+      Id_jornada= jTable1.getValueAt(fila,0).toString();
            
     }
     else{
@@ -240,37 +269,37 @@ String  Id_estadios="";
     }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
           Conexion cc=new Conexion();
           Connection cn=cc.getConexion();
           //Este nos sirve para poder modificar lo unico que cambia es id_equipos
 try{
-PreparedStatement pst=cn.prepareStatement("UPDATE estadios SET Nom_estadios='"+jTextField1.getText()+"' WHERE Nom_estadios='"+Id_estadios+"' ");
+PreparedStatement pst=cn.prepareStatement("UPDATE jornada SET Id_torneo='"+jTextField2.getText()+"',Id_jornada='"+jTextField1.getText()+"' WHERE Id_torneo='"+Id_jornada+"' ");
 
 //PreparedStatement pst=cn.prepareStatement("UPDATE equipo SET equipos='"+"' WHERE Id_Equipos='"+Id_Equipos+"' ");
-Id_estadios=jTextField1.getText();
+ Id_jornada=jTextField1.getText();
+ 
 pst.executeUpdate();
 mostrardatos("");
 }catch(Exception e){
     System.out.print(e.getMessage());
 }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-                   Conexion cc=new Conexion();
+             Conexion cc=new Conexion();
              Connection cn=cc.getConexion();
               int fila=jTable1.getSelectedRow();
                  String cod="";
              cod=jTable1.getValueAt(fila,0).toString();
       try{
-        PreparedStatement pst=cn.prepareStatement("DELETE FROM estadios WHERE Nom_estadios='"+cod+"'");
+        PreparedStatement pst=cn.prepareStatement("DELETE FROM jornada WHERE Id_jornada='"+cod+"'");
         pst.executeUpdate();
         mostrardatos("");// TODO add your handling code here:
          } catch (Exception e){
 }  
-        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
@@ -290,20 +319,20 @@ mostrardatos("");
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Estadios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jornada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Estadios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jornada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Estadios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jornada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Estadios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jornada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Estadios().setVisible(true);
+                new jornada().setVisible(true);
             }
         });
     }
@@ -312,7 +341,6 @@ mostrardatos("");
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -322,8 +350,6 @@ mostrardatos("");
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
-
-    
 }
