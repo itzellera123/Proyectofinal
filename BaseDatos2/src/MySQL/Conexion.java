@@ -11,10 +11,10 @@ import java.sql.*;
  * @author Rebe-pc
  */
 public class Conexion {
-   private static String db="ejemplo1";//nombre de la BD
-    private static String user="root";//Usuario
-    private static String pass="";//Contraseña
-    private static String host="localhost:3306";//Host
+  private static String db="ligamx";
+    private static String user="root";
+    private static String pass="";
+    private static String host="localhost:3306";
     private static String server="jdbc:mysql://"+host+"/"+db;
     
     public static  Connection getConexion() {
@@ -27,12 +27,5 @@ public class Conexion {
          System.out.println(String.valueOf(e));}
         return cn;
     }
-
-//    public Connection ejemplo() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-
-    public PreparedStatement prepareStatement(String insert_into_estadiosnombre_estadio_VALUES) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }
