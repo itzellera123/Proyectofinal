@@ -5,6 +5,12 @@
  */
 package Sistema;
 
+import Sistema.Info;
+import Sistema.MostrarDatos;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.JPanel;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 
@@ -15,7 +21,7 @@ import javax.swing.JOptionPane;
 public class Inicio extends javax.swing.JFrame {
 
     /**
-     * Creates new form NewJFrame2
+     * Creates new form Home
      */
     public Inicio() {
         initComponents();
@@ -24,8 +30,15 @@ public class Inicio extends javax.swing.JFrame {
         reloj hora=new reloj(Jhora);
         hora.start();
         fecha();
+        nuevotorneo.setVisible(false);
+        
     }
-        public void fecha(){
+    public Image getIconImage()
+    {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Images/Error_96px.png"));
+        return retValue;
+    }
+    public void fecha(){
         String dias=Fecha();
         Jfecha.setText(dias);
     }
@@ -54,7 +67,9 @@ public class Inicio extends javax.swing.JFrame {
         String mifecha= String.valueOf(dia)+"/"+nombre(mes)+"/"+String.valueOf(ano);
         return mifecha;
     }
-
+        
+        
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,43 +79,92 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        Jhora = new javax.swing.JLabel();
-        Jfecha = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        jPBackground = new javax.swing.JPanel();
+        jPSidePanel = new javax.swing.JPanel();
+        jPinfo = new javax.swing.JPanel();
+        jLInfo = new javax.swing.JLabel();
+        jPred = new javax.swing.JPanel();
+        jLwelcometo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        Jfecha = new javax.swing.JLabel();
+        Jhora = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jPtop = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        torneos = new javax.swing.JButton();
+        nuevotorneo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setTitle("MathNet Support 1.2");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setLocationByPlatform(true);
+        setUndecorated(true);
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel2.setText("Bienvenido a Liga Bancomer Mx");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 530, 130));
-
-        jButton1.setText("Agregar Nuevo Torneo");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, 150, 30));
-
-        jButton2.setText("Editar Torneo");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 390, 150, 30));
-
-        jButton3.setText("Mostar Torneos");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+        jPBackground.setBackground(new java.awt.Color(38, 38, 38));
+        jPBackground.setToolTipText("");
+        jPBackground.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPBackgroundFocusLost(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 150, 30));
+        jPBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Jhora.setFont(new java.awt.Font("Segoe UI Black", 1, 11)); // NOI18N
-        Jhora.setText("hora");
-        getContentPane().add(Jhora, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 120, 30));
+        jPSidePanel.setBackground(new java.awt.Color(45, 44, 65));
+        jPSidePanel.setToolTipText("");
+        jPSidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Jfecha.setFont(new java.awt.Font("Segoe UI Black", 1, 11)); // NOI18N
+        jPinfo.setBackground(new java.awt.Color(204, 204, 204));
+        jPinfo.setToolTipText("Mas informacion sobre Mathnet Support");
+        jPinfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPinfoMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPinfoMousePressed(evt);
+            }
+        });
+
+        jLInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main/Images/Info_15px.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPinfoLayout = new javax.swing.GroupLayout(jPinfo);
+        jPinfo.setLayout(jPinfoLayout);
+        jPinfoLayout.setHorizontalGroup(
+            jPinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPinfoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPinfoLayout.setVerticalGroup(
+            jPinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPinfoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPSidePanel.add(jPinfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 40, 30));
+
+        jPBackground.add(jPSidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 33, 40, 470));
+
+        jPred.setBackground(new java.awt.Color(193, 44, 66));
+        jPred.setToolTipText("");
+
+        jLwelcometo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLwelcometo.setForeground(new java.awt.Color(255, 255, 255));
+        jLwelcometo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLwelcometo.setText("Liga Bancomer Mx");
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+
+        Jfecha.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        Jfecha.setForeground(new java.awt.Color(255, 255, 255));
         Jfecha.setText("fecha");
-        getContentPane().add(Jfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 140, -1));
+
+        Jhora.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        Jhora.setForeground(new java.awt.Color(255, 255, 255));
+        Jhora.setText("hora");
 
         jButton4.setText("iniciar sesion");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -108,34 +172,178 @@ public class Inicio extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sistema/uefa.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+        javax.swing.GroupLayout jPredLayout = new javax.swing.GroupLayout(jPred);
+        jPred.setLayout(jPredLayout);
+        jPredLayout.setHorizontalGroup(
+            jPredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPredLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPredLayout.createSequentialGroup()
+                        .addGroup(jPredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPredLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(136, 136, 136))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPredLayout.createSequentialGroup()
+                                .addComponent(Jfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(Jhora, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(694, Short.MAX_VALUE))
+                    .addGroup(jPredLayout.createSequentialGroup()
+                        .addComponent(jLwelcometo, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        jPredLayout.setVerticalGroup(
+            jPredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPredLayout.createSequentialGroup()
+                .addGroup(jPredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPredLayout.createSequentialGroup()
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))
+                    .addGroup(jPredLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLwelcometo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(jPredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPredLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPredLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Jhora, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Jfecha)))))
+        );
+
+        jPBackground.add(jPred, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 27, 970, -1));
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main/Images/Close Window_15px.png"))); // NOI18N
+        jLabel2.setToolTipText("Cerrar? :'v");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel2MousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPtopLayout = new javax.swing.GroupLayout(jPtop);
+        jPtop.setLayout(jPtopLayout);
+        jPtopLayout.setHorizontalGroup(
+            jPtopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPtopLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPtopLayout.setVerticalGroup(
+            jPtopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+        );
+
+        jPBackground.add(jPtop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1023, -1));
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main/Images/Liga MX.png"))); // NOI18N
+        jPBackground.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 280, 230));
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 48)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Bienvenido");
+        jPBackground.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 440, 50));
+
+        torneos.setText("Mostar Resultados de Torneos");
+        torneos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                torneosActionPerformed(evt);
+            }
+        });
+        jPBackground.add(torneos, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, 210, 30));
+
+        nuevotorneo.setText("Agregar Nuevo Torneo");
+        nuevotorneo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevotorneoActionPerformed(evt);
+            }
+        });
+        jPBackground.add(nuevotorneo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, 210, 30));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    
+    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
         // TODO add your handling code here:
-        MostrarDatos obj=new MostrarDatos();//Abrir nueva ventana
+        System.exit(0);
+    }//GEN-LAST:event_jLabel2MousePressed
+
+    private void jPBackgroundFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPBackgroundFocusLost
+        // TODO add your handling code here:  
+    }//GEN-LAST:event_jPBackgroundFocusLost
+
+    
+    
+    private void jPinfoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPinfoMousePressed
+
+        resetColor(jPinfo);
+    }//GEN-LAST:event_jPinfoMousePressed
+
+    private void jPinfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPinfoMouseClicked
+        // TODO add your handling code here:
+        Info obj=new Info();
+        obj.setVisible(true);
+    }//GEN-LAST:event_jPinfoMouseClicked
+
+    private void torneosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_torneosActionPerformed
+        // TODO add your handling code here:
+        MostrarDatos obj=new MostrarDatos();
         obj.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_torneosActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        String Administrador = "Edu Lopez";//Nombre del Admi
-        String password = "12345"; //Contraseña
+        String Administrador = "Edu Lopez";
+        String password = "12345";
         String Admi_introducido="";
         String pass_introducido="";
         while(Admi_introducido.equals(Administrador)==false || pass_introducido.equals(password)==false){
             Admi_introducido=JOptionPane.showInputDialog("Introdusca el Nombre");
             pass_introducido=JOptionPane.showInputDialog("Introdusca la Contraseña");
         }
-        
+        JOptionPane.showMessageDialog(rootPane, " Bienvenido "+ Administrador);
+
+        nuevotorneo.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void nuevotorneoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevotorneoActionPerformed
+        // TODO add your handling code here:
+        Temporada obj=new Temporada();
+        obj.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_nuevotorneoActionPerformed
+
+    
+    
+    void setColor(JPanel panel){
+        panel.setBackground(new Color(204,204,204));
+    }
+    
+    void resetColor(JPanel panel){
+        panel.setBackground(new Color(240,240,240));
+    }
     /**
      * @param args the command line arguments
      */
@@ -163,8 +371,6 @@ public class Inicio extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -177,11 +383,19 @@ public class Inicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Jfecha;
     private javax.swing.JLabel Jhora;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLInfo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLwelcometo;
+    private javax.swing.JPanel jPBackground;
+    private javax.swing.JPanel jPSidePanel;
+    private javax.swing.JPanel jPinfo;
+    private javax.swing.JPanel jPred;
+    private javax.swing.JPanel jPtop;
+    private javax.swing.JButton nuevotorneo;
+    private javax.swing.JButton torneos;
     // End of variables declaration//GEN-END:variables
 }

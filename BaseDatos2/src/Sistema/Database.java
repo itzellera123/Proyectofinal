@@ -16,7 +16,7 @@ import java.sql.Statement;
  */
 class Database {
 
-     public static ResultSet getTabla(String Consulta){//Consuklta en las tablas
+     public static ResultSet getTabla(String Consulta){
         Connection cn=getConexion();
         Statement st;
         ResultSet datos=null;
@@ -26,6 +26,10 @@ class Database {
         }
         catch(Exception e){ System.out.print(e.toString());}
         return datos;
+    }
+
+    static boolean GuardaFicha(String sql) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
